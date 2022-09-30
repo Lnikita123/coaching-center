@@ -138,19 +138,9 @@ const deleteUserById = async function (req, res) {
       let mobile = req.params.mobile
       
   
-    //   if (!Validator.isValidObjectId(id)) {
-    //     return res.status(400).send({ status: false, message: `BookId is invalid.` });
-    //   }
-  
-    //   let Book = await bookModel.findOne({ _id: id });
-  
-    //   if (!Book) {
-    //     return res.status(400).send({ status: false, msg: "No such book found" });
-    //   }
-  
-    //   if (Book.userId != userIdFromToken) { res.status(401).send({ status: false,message: `Unauthorized access! Owner info doesn't match` });
-    //     return;
-    //   }
+      if (!mobile) {
+        return res.status(400).send({ status: false, message: `Mobile no is required` });
+      }
 
       const user= await studentModel.deleteOne({mobile:mobile})
       return res.status(200).send({status: true,message: "successfully deleted the student",data:user});
@@ -164,23 +154,6 @@ const deleteUserById = async function (req, res) {
     }
 }
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports.createUser=createUser
